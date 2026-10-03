@@ -12,18 +12,9 @@ Fine-tuned from COCO-pretrained YOLOv8n weights for 40 epochs on
 COCO128 (backbone frozen, only neck/head + new DINOv2 fusion layers
 trained):
 
-| Metric | Value |
-|---|---|
-| Precision | 0.671 |
-| Recall | 0.510 |
-| mAP@0.5 | 0.581 |
-| mAP@0.5:0.95 | 0.420 |
-
-Several classes (airplane, train, zebra, horse, bear, tv, hot dog,
-skis) reach ~0.99 mAP@0.5. See `results/plots/training_metrics.png`
-for the full training curve.
-
 ![Training metrics](results/plots/training_metrics.png)
+
+![Training metrics](results/plots/val_batch1_pred.jpg)
 
 ## Project layout
 
@@ -38,9 +29,7 @@ IUI-Assignment-1/
 ├── make_test_video.py                # builds a demo video from COCO128 frames
 ├── make_test_set.py                  # saves sample predicted images
 ├── plot_results.py                   # builds the labeled results figure
-├── answers/                          # write-ups on the pretrained-weights question
 ├── results/
-│   ├── yolov8_dinov2_coco128_final/  # full ultralytics run (weights, logs)
 │   ├── plots/                        # curated plots incl. training_metrics.png
 │   └── metrics/results.csv           # per-epoch metrics
 └── test_outputs/
