@@ -103,4 +103,27 @@ This mirrors the hybrid strategy in the reference work: keep YOLO's
 speed (DINOv2 is frozen and only adds one extra forward pass, no extra
 backward cost) while injecting the semantic understanding DINOv2 provides
 to reduce false positives in cluttered scenes.
+
+## Note on the results committed in this repo
+
+The `results/`, `models/best_yolov8_dinov2.pt`, and `test_outputs/` in this
+repo were produced by a **60-epoch run on CPU** (`python train.py --epochs 60
+--imgsz 640 --batch 16`), because no CUDA-capable driver was reachable in the
+sandbox this was built in. The model trains and runs correctly end-to-end —
+box localization is already accurate (see `test_outputs/images/`) — but
+confidence scores and mAP are low since YOLOv8 normally needs hundreds of
+epochs and GPU-scale batch sizes to converge well, especially for a custom
+architecture trained without loading COCO-pretrained weights.
+
+**For real high-accuracy results, re-run training on your CUDA GPU:**
+
+```bash
+source .venv/bin/activate
+python -c "import torch; print(torch.cuda.is_available())"   # should print True
+python train.py --epochs 150 --imgsz 640 --batch 16
+```
+
+This will be dramatically faster (minutes instead of hours) and will converge
+to much higher mAP. Everything else (inference, test set generation, video
+demo) works unchanged against the new weights.
 # PD234-IUI-Assignment-1
