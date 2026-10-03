@@ -1,0 +1,24 @@
+# virtual environment
+.venv/
+
+# downloaded dataset (auto re-downloaded by train.py)
+datasets/
+
+# pretrained weight downloads
+*.pt
+!models/best_yolov8_dinov2.pt
+
+# full raw ultralytics run (weights + duplicated mosaics/plots/logs) —
+# the curated, submission-ready copies live in results/plots/ and
+# results/metrics/, which are NOT ignored.
+results/yolov8_dinov2_coco128_final/
+
+# generated demo video (large binary, regenerate with make_test_video.py)
+test_outputs/demo_input.mp4
+test_outputs/demo_input_pred.mp4
+
+# caches
+__pycache__/
+*.pyc
+.cache/
+.claude/
